@@ -1,38 +1,33 @@
 module.exports = {
-  parser: 'vue-eslint-parser',
-  parserOptions: {
-    parser: '@typescript-eslint/parser',
-    ecmaVersion: 2020,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true
-    }
+  root: true,
+  env: {
+    node: true,
+    browser: true
   },
-  extends: [
-    'plugin:vue/vue3-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended'
-  ],
+  extends: ["plugin:vue/essential", "eslint:recommended", "@vue/prettier"],
+  parserOptions: {
+    parser: "babel-eslint"
+  },
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    '@typescript-eslint/ban-ts-ignore': 'off',
-    '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/no-empty-function': 'off',
-    '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/camelcase': 'off',
-    camelcase: ['warn', { properties: 'never' }],
-    quotes: ['warn', 'single'],
-    semi: 'warn',
-    'prefer-const': 'off',
-    'prettier/prettier': [
-      'off',
+    "no-console": process.env.NODE_ENV === "production" ? 1 : 0,
+    "no-debugger": process.env.NODE_ENV === "production" ? 1 : 0,
+    "vue/no-unused-components": 1,
+    "prefer-const": 0,
+    "no-empty-function": 1,
+    semi: 1,
+    quotes: [1, "single"],
+    "object-shorthand": 1,
+    camelcase: [2, {properties: "never"}],
+    // 关闭eslint可能与prettier发生冲突的代码格式化规则
+    "prettier/prettier": [
+      "off",
       {
-        singleQuote: true,
-        semi: true,
-        trailingComma: 'none'
+        singleQuote: false,
+        trailingComma: "none",
+        bracketSpacing: true,
+        jsxBracketSameLine: true,
+        sortAttributes: true,
+        "key-spacing": false
       }
     ]
   }
