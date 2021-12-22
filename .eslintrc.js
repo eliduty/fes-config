@@ -2,34 +2,57 @@ module.exports = {
   env: {
     browser: true,
     node: true,
+    es6: true,
+    commonjs: true,
   },
+  //配置解析器
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 'latest',
     sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
   },
-  extends: ['plugin:vue/vue3-recommended', 'eslint:recommended', 'plugin:prettier/recommended'],
+
+  extends: 'eslint:recommended',
+  //全局变量
+  globals: {
+    __DEV__: true,
+    __WECHAT__: true,
+    __ALIPAY__: true,
+    App: true,
+    Page: true,
+    Component: true,
+    Behavior: true,
+    wx: true,
+    getApp: true,
+    getCurrentPages: true,
+  },
+  /**
+   * "off" 或 0 - 关闭规则
+   * "warn" 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出),
+   * "error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
+   */
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'vue/no-unused-components': 'warn',
-    'vue/multi-word-component-names': 'off',
-    'vue/script-setup-uses-vars': 'error',
-    'prefer-const': 'off',
-    'object-shorthand': 'warn',
-    camelcase: ['warn', { properties: 'never' }],
-    quotes: ['warn', 'single'],
-    semi: 'warn',
+    'no-console': 0,
+    'no-debugger': 1,
+    'prefer-const': 0,
+    'no-empty-function': 0,
+    semi: 1,
+    quotes: [1, 'single'],
+    'object-shorthand': 1,
+    'no-unused-vars': 1,
+    'object-curly-spacing': [1, 'always'],
+    camelcase: [2, { properties: 'never' }],
+    // 关闭eslint可能与prettier发生冲突的代码格式化规则
     'prettier/prettier': [
-      'off',
+      0,
       {
-        singleQuote: false,
-        trailingComma: 'none',
+        singleQuote: true,
+        trailingComma: 'all',
+        arrowParens: 'avoid',
+        printWidth: 200,
+        tabWidth: 2,
+        semi: true,
         bracketSpacing: true,
         jsxBracketSameLine: true,
-        sortAttributes: true,
         'key-spacing': false,
       },
     ],
